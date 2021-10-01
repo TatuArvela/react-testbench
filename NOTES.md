@@ -18,8 +18,8 @@ explaining best practices and caveats with the help of an example project I have
 
 What is automated testing? In an automated test, we give some piece of software, such as a component or a function, a
 certain state or input, and we compare the output to an assertion of what it should be. For example, a sum function,
-given 2 and 2, should return 4. This example is a unit test, but there are also other levels and approaches of testing,
-but I won't cover them here.
+given 2 and 2, should return 4. This example is a unit test. There are other levels and approaches of testing,
+but I won't cover everything here.
 
 
 ### Why test?
@@ -59,9 +59,14 @@ the `test` npm script, which runs `react-scripts test`, which runs `jest` under 
 
 Previously common frameworks and tools include Mocha, Chai, Sinon and Enzyme, but the new tools are a lot easier to use.
 
-We can also check the test coverage of our code, to see if there are components especially lacking in tests. This can
-be done with the --coverage flag for Jest. Full coverage is usually not a reasonable goal, instead one should first
+We can check the test coverage of our code, to see if there are components especially lacking in tests. This can
+be done with the `--coverage` option for Jest. Full coverage is usually not a reasonable goal, instead one should first
 cover functions that process data, and then see if there is something else that could be covered.
+
+Just something I'd like to mention as a side-note, to evaluate the quality of our tests, we can also use something
+called mutation testing. This runs the tests against multiple versions of the code that have been automatically modified
+to be incorrect. This helps to identify weak tests that could allow buggy code. The most popular option to use with Jest
+would be StrykerJS.
 
 
 ### Testing methods
