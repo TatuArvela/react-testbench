@@ -17,6 +17,14 @@ const AppContainer = styled.div`
   margin: 0;
 `;
 
+const Content = styled.div`
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  align-items: center;
+  justify-content: center;
+`;
+
 const App = () => {
   const auth = useAuth();
 
@@ -26,7 +34,9 @@ const App = () => {
         <GlobalStyle />
         <BrowserRouter>
           <Header />
-          <Routes />
+          <Content>
+            <Routes />
+          </Content>
         </BrowserRouter>
       </AppContainer>
     </AuthProvider>

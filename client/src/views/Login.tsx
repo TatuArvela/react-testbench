@@ -9,19 +9,24 @@ interface Props {
 const StyledLogin = styled.form`
   display: flex;
   flex-direction: column;
-  padding: 24px;
-  background: #bdbdbd;
+  padding: 48px 36px;
+  background: white;
+  border: 2px solid black;
+
+  h2 {
+    margin-top: 0;
+  }
 
   label {
-    font-size: 20px;
+    font-size: 16px;
   }
 
   input {
     margin: 0 0 24px 0;
-    border: none;
-    border-radius: 12px;
+    border: 2px solid black;
     padding: 8px;
-    font-size: 24px;
+    font-size: 16px;
+    border-radius: 3px;
   }
 
   button {
@@ -29,7 +34,7 @@ const StyledLogin = styled.form`
     background: pink;
     padding: 6px;
     border-radius: 3px;
-    font-size: 24px;
+    font-size: 16px;
   }
 `;
 
@@ -64,10 +69,11 @@ const Login = ({ logIn }: Props) => {
         onSubmit();
       }}
     >
-      <h2>Great security! Wa wa wee wa!</h2>
+      <h2>Look at all this security! Wa wa wee wa!</h2>
 
       <label htmlFor="username">Username</label>
       <input
+        title="Available users: 'aatu'"
         type="text"
         onChange={(event) => setUsername(event.target.value)}
         id="username"
@@ -75,6 +81,7 @@ const Login = ({ logIn }: Props) => {
 
       <label htmlFor="password">Password</label>
       <input
+        title="The password is always 'password'"
         type="password"
         onChange={(event) => setPassword(event.target.value)}
         id="password"

@@ -23,12 +23,11 @@ const StyledHome = styled.div`
 `;
 
 const Content = styled.div`
-  background: #040938;
-  color: white;
+  background: white;
   padding: 36px;
   text-align: center;
   border-radius: 3px;
-  box-shadow: 0 0 0 3px rgba(255, 255, 255, 0.4);
+  border: 2px solid black;
 `;
 
 type CoinFace = 'heads' | 'tails';
@@ -59,7 +58,7 @@ const Home = () => {
       case 'heads':
         return 'Interesting!';
       case 'tails':
-        return 'Eh, whatever.';
+        return 'Eh, who cares?';
     }
   };
 

@@ -1,7 +1,7 @@
-import { Auth, Identity } from './types';
+import { Auth, Identity, Permission } from './types';
 import useLocalStorage from './useLocalStorage';
 
-const AUTH_SERVICE = 'http://localhost:3001/authenticate';
+const AUTH_ENDPOINT = 'http://localhost:3001/authenticate';
 
 const useAuth = (): Auth => {
   const [identity, setIdentity] = useLocalStorage('identity', null);
@@ -14,7 +14,7 @@ const useAuth = (): Auth => {
     username: string,
     password: string
   ): Promise<Identity | null> => {
-    return fetch(AUTH_SERVICE, {
+    return fetch(AUTH_ENDPOINT, {
       method: 'POST',
       mode: 'cors',
       headers: {
@@ -22,9 +22,6 @@ const useAuth = (): Auth => {
       },
       body: JSON.stringify({ username, password }),
     })
-      .then((response) => {
-        return response;
-      })
       .then((response) => response.json())
       .then((data) => {
         const { name, token, error, permissions } = data;
@@ -56,7 +53,11 @@ const useAuth = (): Auth => {
     return false;
   };
 
+  const hasPermission = (permission: Permission) =>
+    identity?.permissions.includes(permission) ?? false;
+
   return {
+    hasPermission,
     identity,
     logIn,
     logOut,

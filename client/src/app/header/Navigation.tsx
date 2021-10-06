@@ -1,7 +1,7 @@
 import styled from 'styled-components';
 
 import { useAuthContext } from '../../auth/AuthContext';
-import { hasImagesAccess, hasReportAccess } from '../../auth/permissions';
+import { Permission } from '../../auth/types';
 import NavigationLink from './NavigationLink';
 
 const Nav = styled.nav`
@@ -11,17 +11,17 @@ const Nav = styled.nav`
 `;
 
 const Navigation = () => {
-  const { identity } = useAuthContext();
+  const { hasPermission, identity } = useAuthContext();
 
   return (
     <Nav>
       <NavigationLink to="/">Home</NavigationLink>
 
-      {hasImagesAccess(identity) && (
+      {hasPermission(Permission.Images) && (
         <NavigationLink to="/images">Images</NavigationLink>
       )}
 
-      {hasReportAccess(identity) && (
+      {hasPermission(Permission.Report) && (
         <NavigationLink to="/report">Report</NavigationLink>
       )}
 
