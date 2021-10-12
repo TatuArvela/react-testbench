@@ -1,7 +1,7 @@
 const express = require('express')
 const cors = require('cors')
 const users = require('./data/users');
-const { getToken, getImages } = require('./utils');
+const { getToken, getImages, getReport } = require('./utils');
 
 const port = 3001
 
@@ -19,12 +19,12 @@ app.post('/authenticate', (req, res) => {
 
     const {username, password} = req.body;
 
-    const match = users.find(user => user.username === username);
-    if (match.password === password) {
+    const user = users.find(u => u.username === username);
+    if (user.password === password) {
         return res.json({
-            name: match.name,
-            token: match.token,
-            permissions: match.permissions
+            name: user.name,
+            token: user.token,
+            permissions: user.permissions
         })
     }
 
@@ -36,8 +36,8 @@ app.post('/authenticate', (req, res) => {
 app.get('/images', async (req, res) => {
     const token = getToken(req);
 
-    const match = users.find(user => user.token === token);
-    if (match && match.permissions.includes('images')) {
+    const user = users.find(u => u.token === token);
+    if (user && user.permissions.includes('images')) {
         const images = await getImages();
 
         if (images) {
@@ -47,6 +47,21 @@ app.get('/images', async (req, res) => {
 
     return res.status(401).send();
 })
+
+app.get('/report', async (req, res) => {
+    const token = getToken(req);
+
+    const user = users.find(u => u.token === token);
+    if (user && user.permissions.includes('report')) {
+        const report = await getReport(user.username);
+
+        if (report) {
+            return res.json(report)
+        }
+    }
+
+    return res.status(401).send();
+});
 
 app.listen(port, () => {
     console.log(`Example app listening at http://localhost:${port}`);

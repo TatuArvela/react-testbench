@@ -8,6 +8,7 @@ import Home from '../views/Home';
 import Images from '../views/images/Images';
 import Login from '../views/Login';
 import Logout from '../views/Logout';
+import ReportContainer from '../views/report/ReportContainer';
 
 const Routes = () => {
   const { logIn, logOut } = useAuthContext();
@@ -24,6 +25,10 @@ const Routes = () => {
 
       <AuthorizedRoute permission={Permission.Images} path="/images" exact>
         <Images />
+      </AuthorizedRoute>
+
+      <AuthorizedRoute permission={Permission.Report} path="/report" exact>
+        <ReportContainer />
       </AuthorizedRoute>
 
       <Route exact path="/">

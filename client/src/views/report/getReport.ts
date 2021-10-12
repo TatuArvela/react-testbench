@@ -1,9 +1,10 @@
 import { Identity } from '../../auth/types';
+import { ReportRow } from './types';
 
-const IMAGES_ENDPOINT = 'http://localhost:3001/images';
+const REPORT_ENDPOINT = 'http://localhost:3001/report';
 
-const getImages = async (identity: Identity): Promise<string[]> => {
-  return fetch(IMAGES_ENDPOINT, {
+const getReport = async (identity: Identity): Promise<ReportRow[]> => {
+  return fetch(REPORT_ENDPOINT, {
     method: 'GET',
     mode: 'cors',
     headers: {
@@ -19,4 +20,4 @@ const getImages = async (identity: Identity): Promise<string[]> => {
     });
 };
 
-export default getImages;
+export default getReport;

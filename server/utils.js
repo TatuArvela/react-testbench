@@ -1,8 +1,6 @@
 const fs = require('fs');
 const path = require('path');
-const getToken = (req) => {
-  return req.header("Authorization").replace("Bearer ", "");
-}
+const reports = require('./data/reports');
 
 const getImages = async () => {
   const imagesPath = path.join(__dirname, 'public');
@@ -15,7 +13,16 @@ const getImages = async () => {
   });
 }
 
+const getReport = async (username) => {
+  return reports[username];
+}
+
+const getToken = (req) => {
+  return req.header("Authorization").replace("Bearer ", "");
+}
+
 module.exports = {
+  getImages,
+  getReport,
   getToken,
-  getImages
 }
