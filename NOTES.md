@@ -1,5 +1,7 @@
 # Notes
 
+**Trim the presentation to be under 30 minutes**
+
 Useful starter commands:
 ```
 npx create-react-app client --template typescript
@@ -10,8 +12,6 @@ yarn add --dev prettier eslint-plugin-prettier eslint-config-prettier eslint-plu
 ## Presentation
 
 ### Intro
-
-I'm Tatu Arvela, and I have been here at Nitor for around 1 and a half years now.
 
 This presentation is about automated testing on React. I will go through several types and methods of testing,
 explaining best practices and caveats with the help of an example project I have made.
