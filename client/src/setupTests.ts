@@ -3,6 +3,8 @@
 // expect(element).toHaveTextContent(/react/i)
 // learn more: https://github.com/testing-library/jest-dom
 import '@testing-library/jest-dom';
+// Without this the class names would change on each style change
+// As a side-effect, the styles are included in the snapshot
 import 'jest-styled-components';
 
 import { server } from './mocks/server.js';

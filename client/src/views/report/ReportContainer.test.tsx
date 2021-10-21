@@ -12,9 +12,10 @@ import ReportContainer from './ReportContainer';
 describe('ReportContainer', () => {
   test('Fetches report data and renders it', async () => {
     // You can set custom handlers for a test like this
-    server.use(reportHandler);
+    server.use(reportHandler); // Look at the server and handler
 
     render(
+      // Just setting the permission to keep up appearances, but it's not considered in the handler
       <MockAuthProvider identity={createDummyIdentity([Permission.Report])}>
         <ReportContainer />
       </MockAuthProvider>

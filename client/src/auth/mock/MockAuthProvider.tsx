@@ -1,6 +1,7 @@
+import React from 'react';
+
 import { AuthProvider } from '../AuthContext';
 import { Auth, Identity, Permission } from '../types';
-import React from 'react';
 
 type Props = {
   identity: Identity | null;

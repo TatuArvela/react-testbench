@@ -2,9 +2,7 @@ import { render } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import NavigationLink from './NavigationLink';
-// The above is needed because this uses styled-components
-// Otherwise the classes would change on each style change
-// As a side-effect, the styles are included in the snapshot
+// Check out setupTests.ts
 
 // Snapshot tests validate that components don't change unexpectedly
 // Sometimes useful, but consider alternatives
