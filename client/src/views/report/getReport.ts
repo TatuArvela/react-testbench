@@ -1,7 +1,7 @@
 import { Identity } from '../../auth/types';
 import { ReportRow } from './types';
 
-const REPORT_ENDPOINT = 'http://localhost:3001/report';
+export const REPORT_ENDPOINT = 'http://localhost:3001/report';
 
 const getReport = async (identity: Identity): Promise<ReportRow[]> => {
   return fetch(REPORT_ENDPOINT, {

@@ -45,9 +45,13 @@ const ColumnHeader = <T extends Row>({
   const getSortingIndicator = (sortingDirection: SortingDirection) => {
     switch (sortingDirection) {
       case 'asc':
-        return <SortingIndicator>⬆</SortingIndicator>;
+        return (
+          <SortingIndicator data-testid="sorting-indicator">⬆</SortingIndicator>
+        );
       case 'desc':
-        return <SortingIndicator>⬇</SortingIndicator>;
+        return (
+          <SortingIndicator data-testid="sorting-indicator">⬇</SortingIndicator>
+        );
     }
   };
 

@@ -1,6 +1,7 @@
 export type SortingDirection = 'asc' | 'desc';
 
 export type Row = {
+  id: string | number;
   [key: string]: any;
 };
 

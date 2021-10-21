@@ -26,7 +26,6 @@ const Table = <T extends Row>({ rows, columns }: Props<T>) => {
   const [sortingDirection, setSortingDirection] = useState<'asc' | 'desc'>(
     'asc'
   );
-  console.log(sortingDirection);
 
   const changeSorting = (key: keyof T) => {
     if (key === sortBy) {

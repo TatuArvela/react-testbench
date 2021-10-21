@@ -1,9 +1,10 @@
-import Navigation from './Navigation';
 import { render, screen } from '@testing-library/react';
-import MockAuthProvider from '../../auth/mock/MockAuthProvider';
-import { createDummyIdentity } from '../../auth/mock/dummyIdentity';
-import { Identity, Permission } from '../../auth/types';
 import { MemoryRouter } from 'react-router-dom';
+
+import { createDummyIdentity } from '../../auth/mock/dummyIdentity';
+import MockAuthProvider from '../../auth/mock/MockAuthProvider';
+import { Identity, Permission } from '../../auth/types';
+import Navigation from './Navigation';
 
 // Helper function to reduce boilerplate
 const renderNavigation = (identity: Identity | null) => {
