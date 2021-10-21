@@ -1,18 +1,45 @@
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useState } from 'react';
 
 import { useAuthContext } from '../../auth/AuthContext';
 import getReport from './getReport';
 import Report from './Report';
-import { ReportColumn, ReportRow } from './types';
-import { sortRows } from './utils';
+import { Column } from './Table/types';
+import { ReportRow } from './types';
+import {
+  formatDate,
+  sortByDate,
+  sortByDescription,
+  sortByDurationInMinutes,
+  sortById,
+} from './utils';
+
+const columns: Column<ReportRow>[] = [
+  {
+    label: 'ID',
+    columnKey: 'id',
+    sort: sortById,
+  },
+  {
+    label: 'Date',
+    columnKey: 'date',
+    formatter: (value) => formatDate(value as string), // FIXME
+    sort: sortByDate,
+  },
+  {
+    label: 'Duration in minutes',
+    columnKey: 'durationInMinutes',
+    sort: sortByDurationInMinutes,
+  },
+  {
+    label: 'Description',
+    columnKey: 'description',
+    sort: sortByDescription,
+  },
+];
 
 const ReportContainer = () => {
   const { identity } = useAuthContext();
   const [rows, setRows] = useState<ReportRow[]>([]);
-  const [sortBy, setSortBy] = useState<ReportColumn | null>(null);
-  const [sortingDirection, setSortingDirection] = useState<'asc' | 'desc'>(
-    'asc'
-  );
 
   useEffect(() => {
     if (identity) {
@@ -20,30 +47,7 @@ const ReportContainer = () => {
     }
   }, [identity]);
 
-  const sortedRows = useMemo(
-    () => sortRows(rows, sortBy, sortingDirection),
-    [rows, sortBy, sortingDirection]
-  );
-
-  const changeSorting = (key: ReportColumn) => {
-    if (key === sortBy) {
-      if (sortingDirection === 'asc') {
-        return setSortingDirection('desc');
-      }
-      return setSortBy(null);
-    }
-    setSortBy(key);
-    setSortingDirection('asc');
-  };
-
-  return (
-    <Report
-      changeSorting={changeSorting}
-      rows={sortedRows}
-      sortBy={sortBy}
-      sortingDirection={sortingDirection}
-    />
-  );
+  return <Report columns={columns} rows={rows} />;
 };
 
 export default ReportContainer;

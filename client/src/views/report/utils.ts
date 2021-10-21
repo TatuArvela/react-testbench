@@ -1,55 +1,24 @@
-import { ReportColumn, ReportRow, SortingDirection } from './types';
+import { SortFunction } from './Table/types';
+import { ReportRow } from './types';
 
-export const formatDate = (dateString: string) => {
-  const date = new Date(dateString);
+export const formatDate = (value: ReportRow['date']) => {
+  const date = new Date(value);
   return `${date.getDate()}.${date.getMonth() + 1}.${date.getFullYear()}`;
 };
 
-export const sortRows = (
-  rows: ReportRow[],
-  sortBy: ReportColumn | null,
-  sortingDirection: SortingDirection
-) => {
-  let sortedRows: ReportRow[];
-
-  switch (sortBy) {
-    case 'id':
-      sortedRows = rows.sort(sortById);
-      break;
-    case 'date':
-      sortedRows = rows.sort(sortByDate);
-      break;
-    case 'durationInMinutes':
-      sortedRows = rows.sort(sortByDurationInMinutes);
-      break;
-    case 'description':
-      sortedRows = rows.sort(sortByDescription);
-      break;
-    default:
-      sortedRows = rows;
-      break;
-  }
-
-  if (sortingDirection === 'desc') {
-    sortedRows = sortedRows.reverse();
-  }
-
-  return sortedRows;
-};
-
-const sortById = (a: ReportRow, b: ReportRow) => {
+export const sortById: SortFunction<ReportRow> = (a, b) => {
   return a.id - b.id;
 };
 
-const sortByDate = (a: ReportRow, b: ReportRow) => {
+export const sortByDate: SortFunction<ReportRow> = (a, b) => {
   return new Date(a.date).getTime() - new Date(b.date).getTime();
 };
 
-const sortByDurationInMinutes = (a: ReportRow, b: ReportRow) => {
+export const sortByDurationInMinutes: SortFunction<ReportRow> = (a, b) => {
   return a.durationInMinutes - b.durationInMinutes;
 };
 
-const sortByDescription = (a: ReportRow, b: ReportRow) => {
+export const sortByDescription: SortFunction<ReportRow> = (a, b) => {
   if (a.description < b.description) {
     return -1;
   }

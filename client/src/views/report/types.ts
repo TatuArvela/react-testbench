@@ -4,7 +4,3 @@ export type ReportRow = {
   durationInMinutes: number;
   description: string;
 };
-
-export type ReportColumn = keyof ReportRow;
-
-export type SortingDirection = 'asc' | 'desc';

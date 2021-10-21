@@ -1,6 +1,6 @@
 import styled from 'styled-components';
 
-import { ReportColumn, SortingDirection } from './types';
+import { Row, SortingDirection } from './types';
 
 type THProps = {
   isSortedBy: boolean;
@@ -27,21 +27,21 @@ const SortingIndicator = styled.span`
   margin: 0;
 `;
 
-type Props = {
-  changeSorting: (key: ReportColumn) => void;
-  columnKey: ReportColumn;
+type Props<T extends Row> = {
+  changeSorting: (key: keyof T) => void;
+  columnKey: keyof T;
   label: string;
-  sortBy: ReportColumn | null;
+  sortBy: keyof T | null;
   sortingDirection: SortingDirection;
 };
 
-const ColumnHeader = ({
+const ColumnHeader = <T extends Row>({
   changeSorting,
   columnKey,
   label,
   sortBy,
   sortingDirection,
-}: Props) => {
+}: Props<T>) => {
   const getSortingIndicator = (sortingDirection: SortingDirection) => {
     switch (sortingDirection) {
       case 'asc':
