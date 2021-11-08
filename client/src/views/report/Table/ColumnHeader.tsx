@@ -7,15 +7,17 @@ type THProps = {
 };
 
 const TH = styled.th<THProps>`
-  border: 1px solid #202020;
+  background: ${(props) => (props.isSortedBy ? '#dc4627' : '#bd2126')};
+  border-radius: 12px;
+  color: black;
   cursor: pointer;
-  padding: 10px 5px;
   height: 40px;
+  overflow: hidden;
+  padding: 10px 5px;
   width: 25%;
-  background: ${(props) => (props.isSortedBy ? '#99ee99' : '#ffffff')};
 
   &:hover {
-    background: #9999ee;
+    background: #dda027;
   }
 `;
 

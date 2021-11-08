@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+import WebFont from 'webfontloader';
 
 import { useAuthContext } from '../../auth/AuthContext';
 import getReport from './getReport';
@@ -46,6 +47,14 @@ const ReportContainer = () => {
       getReport(identity).then((data) => setRows(data));
     }
   }, [identity]);
+
+  useEffect(() => {
+    WebFont.load({
+      google: {
+        families: ['Roboto', 'IBM Plex Mono', 'Righteous'],
+      },
+    });
+  }, []);
 
   return <Report columns={columns} rows={rows} />;
 };

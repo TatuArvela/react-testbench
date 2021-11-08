@@ -6,14 +6,13 @@ import { Column, Row } from './types';
 import { formatRowValue, sortRows } from './utils';
 
 const StyledTable = styled.table`
-  border: 2px solid #101010;
-  border-collapse: collapse;
-  min-width: 600px;
+  margin: 4px;
+  min-width: 1200px;
 `;
 
 const Cell = styled.td`
-  border: 1px solid #707070;
-  padding: 5px;
+  padding: 4px;
+  font-family: 'IBM Plex Mono', monospace;
 `;
 
 type Props<T extends Row> = {

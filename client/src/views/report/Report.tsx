@@ -5,14 +5,36 @@ import { Column } from './Table/types';
 import { ReportRow } from './types';
 
 const StyledReport = styled.div`
-  background: white;
+  background: black
+    linear-gradient(
+      170deg,
+      rgba(30, 30, 30, 0.1) 0%,
+      rgba(200, 200, 200, 0.1) 49.75%,
+      rgba(0, 0, 0, 0) 50.25%
+    );
   border: 2px solid #3a3a3a;
-  padding: 32px;
+  border-radius: 8px;
+  padding: 36px;
+  color: white;
+  font-family: 'Roboto', sans-serif;
+`;
 
-  h2 {
-    margin-top: 0;
-    text-align: center;
-  }
+const Title = styled.h2`
+  font-size: 64px;
+  text-align: right;
+  margin-bottom: -24px;
+  margin-top: 24px;
+  color: #2f77bc;
+  font-family: 'Righteous', sans-serif;
+  text-transform: uppercase;
+`;
+
+const TableContainer = styled.div`
+  border-radius: 12px;
+  border: 5px solid #2f77bc;
+  box-shadow: 0 0 0 5px black, 0 0 0 10px #2f77bc;
+  padding: 5px;
+  overflow: hidden;
 `;
 
 type Props = {
@@ -23,8 +45,10 @@ type Props = {
 const Report = ({ columns, rows }: Props) => {
   return (
     <StyledReport>
-      <h2>Report</h2>
-      <Table columns={columns} rows={rows} />
+      <TableContainer>
+        <Table columns={columns} rows={rows} />
+      </TableContainer>
+      <Title>Report</Title>
     </StyledReport>
   );
 };

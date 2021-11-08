@@ -34,6 +34,7 @@ The goal is to implement a useful sample project based on the following themes:
 * File upload
 * Mapping data to a table
 * Error handling and logging
+* Localization
 
 ## server
 
