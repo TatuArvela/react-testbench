@@ -7,7 +7,7 @@ import '@testing-library/jest-dom';
 // As a side-effect, the styles are included in the snapshot
 import 'jest-styled-components';
 
-import { server } from './mocks/server.js';
+import { server } from './__mocks__/server.js';
 
 // Establish API mocking before all tests.
 beforeAll(() => server.listen());

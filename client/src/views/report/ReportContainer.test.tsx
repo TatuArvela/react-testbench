@@ -3,8 +3,8 @@ import { render, screen } from '@testing-library/react';
 import { createDummyIdentity } from '../../auth/mock/dummyIdentity';
 import MockAuthProvider from '../../auth/mock/MockAuthProvider';
 import { Permission } from '../../auth/types';
-import { reportHandler } from '../../mocks/handlers';
-import { server } from '../../mocks/server';
+import { reportHandler } from '../../__mocks__/handlers';
+import { server } from '../../__mocks__/server';
 import ReportContainer from './ReportContainer';
 
 // Example of using msw
