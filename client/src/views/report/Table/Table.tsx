@@ -7,7 +7,7 @@ import { formatRowValue, sortRows } from './utils';
 
 const StyledTable = styled.table`
   margin: 4px;
-  min-width: 1200px;
+  min-width: 800px;
 `;
 
 const Cell = styled.td`
