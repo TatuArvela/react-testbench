@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 interface Props {
@@ -6,10 +6,18 @@ interface Props {
 }
 
 const imageBaseUrl = 'http://localhost:3001/';
+const carouselPadding = 32;
 
 const StyledImageCarousel = styled.div`
-  background: black;
+  background: white;
+  border: 2px solid #3a3a3a;
+  padding: ${carouselPadding}px;
   position: relative;
+`;
+
+const ImageContainer = styled.div`
+  border: 2px solid black;
+  background: black;
 
   img {
     width: 500px;
@@ -22,41 +30,48 @@ const buttonStyle = css`
   position: absolute;
   top: 0;
   bottom: 0;
-  width: 60px;
-  font-size: 36px;
-  color: white;
+  width: ${carouselPadding}px;
+  font-size: 42px;
+  color: black;
   height: 100%;
-  background: rgba(0, 0, 0, 0.2);
   border: none;
-  opacity: 0.1;
-  transition: opacity 0.5s;
+  opacity: 0.2;
+  transition: opacity 0.25s, background-color 0.25s;
   cursor: pointer;
 
   &:hover {
     opacity: 1;
+    background: rgba(0, 0, 0, 0.2);
   }
 `;
 
 const PreviousButton = styled.button`
   ${buttonStyle};
   left: 0;
+  &:before {
+    content: '‹';
+  }
 `;
 
 const NextButton = styled.button`
   ${buttonStyle};
   right: 0;
+  &:before {
+    content: '›';
+  }
+`;
+
+const Bottom = styled.div`
+  display: flex;
+  flex-direction: column;
 `;
 
 const Dots = styled.div`
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  right: 0;
-  width: 100%;
   height: 60px;
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 20px;
 `;
 
 interface DotProps {
@@ -67,10 +82,14 @@ const Dot = styled.button<DotProps>`
   cursor: pointer;
   width: 20px;
   height: 20px;
-  background: ${(props) => (props.isCurrent ? 'white' : 'gray')};
+  background: ${(props) => (props.isCurrent ? '#000000' : '#dddddd')};
   border: none;
   border-radius: 50%;
-  margin: 0 10px;
+`;
+
+const Title = styled.h2`
+  margin: 0;
+  text-align: center;
 `;
 
 const ImageCarousel = ({ images }: Props) => {
@@ -103,20 +122,26 @@ const ImageCarousel = ({ images }: Props) => {
   };
 
   const imageUrl = `${imageBaseUrl}${images[currentImage]}`;
+  const imageAlt = 'Cute animal!';
 
   return (
     <StyledImageCarousel>
-      <PreviousButton onClick={showPreviousImage}>◀</PreviousButton>
-      <img src={imageUrl} alt="Cute animal" />
-      <NextButton onClick={showNextImage}>▶</NextButton>
-      <Dots>
-        {images.map((image, index) => (
-          <Dot
-            onClick={() => selectImage(image)}
-            isCurrent={index === currentImage}
-          />
-        ))}
-      </Dots>
+      <PreviousButton onClick={showPreviousImage} />
+      <ImageContainer>
+        <img src={imageUrl} alt={imageAlt} />
+      </ImageContainer>
+      <NextButton onClick={showNextImage} />
+      <Bottom>
+        <Dots>
+          {images.map((image, index) => (
+            <Dot
+              onClick={() => selectImage(image)}
+              isCurrent={index === currentImage}
+            />
+          ))}
+        </Dots>
+        <Title>{imageAlt}</Title>
+      </Bottom>
     </StyledImageCarousel>
   );
 };
