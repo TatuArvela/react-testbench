@@ -4,7 +4,7 @@ import { useAuthContext } from '../../auth/AuthContext';
 import getImages from './getImages';
 import ImageCarousel from './ImageCarousel';
 
-const Images = () => {
+const ImagesView = () => {
   const { identity } = useAuthContext();
   const [images, setImages] = useState<string[]>();
 
@@ -17,4 +17,4 @@ const Images = () => {
   return <ImageCarousel images={images} />;
 };
 
-export default Images;
+export default ImagesView;

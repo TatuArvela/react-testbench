@@ -1,36 +1,36 @@
 import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
+import ImageZoom from './ImageZoom/ImageZoom';
+
 interface Props {
   images?: string[];
 }
 
-const imageBaseUrl = 'http://localhost:3001/';
-const carouselPadding = 32;
+const ZOOM_SCALE = 4;
+const LENS_WIDTH = 100;
+const LENS_HEIGHT = 80;
+const IMAGE_BASE_URL = 'http://localhost:3001/';
+const CAROUSEL_PADDING = 32;
 
 const StyledImageCarousel = styled.div`
   background: white;
   border: 2px solid #3a3a3a;
-  padding: ${carouselPadding}px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.5);
+  padding: ${CAROUSEL_PADDING}px;
   position: relative;
 `;
 
-const ImageContainer = styled.div`
+const ImageBox = styled.div`
   border: 2px solid black;
   background: black;
-
-  img {
-    width: 500px;
-    height: 500px;
-    object-fit: contain;
-  }
 `;
 
 const buttonStyle = css`
   position: absolute;
   top: 0;
   bottom: 0;
-  width: ${carouselPadding}px;
+  width: ${CAROUSEL_PADDING}px;
   font-size: 42px;
   color: black;
   height: 100%;
@@ -121,15 +121,23 @@ const ImageCarousel = ({ images }: Props) => {
     }
   };
 
-  const imageUrl = `${imageBaseUrl}${images[currentImage]}`;
+  const imageUrl = `${IMAGE_BASE_URL}${images[currentImage]}`;
   const imageAlt = 'Cute animal!';
 
   return (
     <StyledImageCarousel>
       <PreviousButton onClick={showPreviousImage} />
-      <ImageContainer>
-        <img src={imageUrl} alt={imageAlt} />
-      </ImageContainer>
+      <ImageBox>
+        <ImageZoom
+          alt={imageAlt}
+          height={500}
+          lensHeight={LENS_HEIGHT}
+          lensWidth={LENS_WIDTH}
+          src={imageUrl}
+          width={500}
+          scale={ZOOM_SCALE}
+        />
+      </ImageBox>
       <NextButton onClick={showNextImage} />
       <Bottom>
         <Dots>
