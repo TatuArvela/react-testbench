@@ -48,7 +48,7 @@ const ImageZoom = ({
   scale,
 }: Props) => {
   const [imageContainer, setImageContainer] = useState<HTMLDivElement>();
-  const imageContainerRef = useCallback((node) => {
+  const imageContainerRef = useCallback((node: HTMLDivElement) => {
     setImageContainer(node);
   }, []);
   const imageElement = imageContainer?.firstElementChild as HTMLImageElement;

@@ -2,7 +2,7 @@ import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 interface Props {
-  children?: React.ReactChildren;
+  children?: React.ReactNode;
   left: number;
   top: number;
   width: number;
@@ -10,6 +10,7 @@ interface Props {
 }
 
 type StyledZoomLensProps = {
+  children?: React.ReactNode;
   width: number;
   height: number;
 };

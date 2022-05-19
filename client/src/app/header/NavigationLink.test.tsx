@@ -1,4 +1,4 @@
-import { render } from '@testing-library/react';
+import { render, screen } from '@testing-library/react';
 import { MemoryRouter } from 'react-router-dom';
 
 import NavigationLink from './NavigationLink';
@@ -8,13 +8,13 @@ import NavigationLink from './NavigationLink';
 // Sometimes useful, but consider alternatives
 describe('NavigationLink', () => {
   test('Render snapshot', () => {
-    const { container } = render(
+    render(
       <MemoryRouter>
         <NavigationLink to="/">Home</NavigationLink>
       </MemoryRouter>
     );
 
-    expect(container.firstChild).toMatchInlineSnapshot(`
+    expect(screen.getByText('Home')).toMatchInlineSnapshot(`
       .c0 {
         color: white;
         margin: 10px;

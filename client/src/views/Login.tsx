@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import styled from 'styled-components';
 
 interface Props {
@@ -47,7 +47,7 @@ const Error = styled.p`
 `;
 
 const Login = ({ logIn }: Props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   const [username, setUsername] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [error, setError] = useState<boolean>(false);
@@ -56,7 +56,7 @@ const Login = ({ logIn }: Props) => {
     setError(false);
     const success = await logIn(username, password);
     if (success) {
-      history.push('/');
+      navigate('/');
     } else {
       setError(true);
     }

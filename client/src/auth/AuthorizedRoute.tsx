@@ -1,20 +1,22 @@
 import React from 'react';
-import { Redirect, Route, RouteProps } from 'react-router-dom';
+import { Navigate } from 'react-router-dom';
 
 import { useAuthContext } from './AuthContext';
 import { Permission } from './types';
 
 type Props = {
   permission: Permission;
-} & RouteProps;
+  children: React.ReactNode;
+};
 
-const AuthorizedRoute = ({ permission, ...rest }: Props) => {
+const AuthorizedRoute = ({ permission, children }: Props) => {
   const { hasPermission } = useAuthContext();
 
   if (!hasPermission(permission)) {
-    return <Redirect to="/" />;
+    return <Navigate to="/" replace />;
   }
-  return <Route {...rest} />;
+
+  return <>{children}</>;
 };
 
 export default AuthorizedRoute;

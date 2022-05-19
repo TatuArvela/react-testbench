@@ -4,9 +4,9 @@ import styled from 'styled-components';
 
 import { AuthProvider } from '../auth/AuthContext';
 import useAuth from '../auth/useAuth';
+import AppRoutes from './AppRoutes';
 import GlobalStyle from './GlobalStyle';
 import Header from './header/Header';
-import Routes from './Routes';
 
 const AppContainer = styled.div`
   height: 100vh;
@@ -35,7 +35,7 @@ const App = () => {
         <BrowserRouter>
           <Header />
           <Content>
-            <Routes />
+            <AppRoutes />
           </Content>
         </BrowserRouter>
       </AppContainer>

@@ -1,15 +1,15 @@
 import { useEffect } from 'react';
-import { useHistory } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 
 interface Props {
   logOut: () => void;
 }
 
 const Logout = ({ logOut }: Props) => {
-  const history = useHistory();
+  const navigate = useNavigate();
   useEffect(() => {
     logOut();
-    history.push('/');
+    navigate('/');
   });
 
   return <p>Logging out...</p>;
