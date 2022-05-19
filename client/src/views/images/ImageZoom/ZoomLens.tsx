@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -9,7 +9,10 @@ interface Props {
   height: number;
 }
 
-type StyledZoomLensProps = Omit<Props, 'children'>;
+type StyledZoomLensProps = {
+  width: number;
+  height: number;
+};
 
 const StyledZoomLens = styled.div<StyledZoomLensProps>`
   display: flex;
@@ -19,15 +22,18 @@ const StyledZoomLens = styled.div<StyledZoomLensProps>`
   pointer-events: none;
   background: rgba(255, 255, 255, 0.25);
 
-  left: ${(props) => props.left}px;
-  top: ${(props) => props.top}px;
   width: ${(props) => props.width}px;
   height: ${(props) => props.height}px;
 `;
 
 const ZoomLens = ({ children, height, width, left, top }: Props) => {
+  const style: CSSProperties = {
+    left: `${left}px`,
+    top: `${top}px`,
+  };
+
   return (
-    <StyledZoomLens height={height} left={left} top={top} width={width}>
+    <StyledZoomLens height={height} width={width} style={style}>
       {children}
     </StyledZoomLens>
   );

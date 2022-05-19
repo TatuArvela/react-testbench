@@ -2,9 +2,10 @@ import React, { useState } from 'react';
 import styled, { css } from 'styled-components';
 
 import ImageZoom from './ImageZoom/ImageZoom';
+import { Image } from './types';
 
 interface Props {
-  images?: string[];
+  images?: Image[];
 }
 
 const ZOOM_SCALE = 4;
@@ -114,15 +115,15 @@ const ImageCarousel = ({ images }: Props) => {
       setCurrentImage((current) => current + 1);
     }
   };
-  const selectImage = (imageToSelect: string) => {
+  const selectImage = (imageToSelect: Image) => {
     const index = images.findIndex((image) => image === imageToSelect);
     if (index !== -1) {
       setCurrentImage(index);
     }
   };
 
-  const imageUrl = `${IMAGE_BASE_URL}${images[currentImage]}`;
-  const imageAlt = 'Cute animal!';
+  const imageUrl = `${IMAGE_BASE_URL}${images[currentImage].url}`;
+  const imageAlt = images[currentImage].title;
 
   return (
     <StyledImageCarousel>

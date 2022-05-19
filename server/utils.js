@@ -1,16 +1,8 @@
-const fs = require('fs');
-const path = require('path');
 const reports = require('./data/reports');
+const images = require('./data/images');
 
 const getImages = async () => {
-  const imagesPath = path.join(__dirname, 'public');
-
-  return fs.readdirSync(imagesPath, async (err, files) => {
-    if (err) {
-      return console.error(err);
-    }
-    return files;
-  });
+  return images;
 }
 
 const getReport = async (username) => {

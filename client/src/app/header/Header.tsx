@@ -15,6 +15,10 @@ const StyledHeader = styled.header`
 
 const Title = styled.h1`
   font-size: 36px;
+
+  @media (max-width: 635px) {
+    font-size: 20px;
+  }
 `;
 
 const Header = () => (

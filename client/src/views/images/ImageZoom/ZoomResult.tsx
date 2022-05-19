@@ -1,3 +1,4 @@
+import { CSSProperties } from 'react';
 import styled from 'styled-components';
 
 interface Props {
@@ -10,8 +11,6 @@ interface Props {
 }
 
 interface StyledZoomResultProps {
-  positionX: number;
-  positionY: number;
   scaledHeight: number;
   scaledWidth: number;
   imageSrc: string;
@@ -21,8 +20,6 @@ interface StyledZoomResultProps {
 
 const StyledZoomResult = styled.div<StyledZoomResultProps>`
   background-image: url('${(props) => props.imageSrc}');
-  background-position: ${(props) => props.positionX}px
-    ${(props) => props.positionY}px;
   background-repeat: no-repeat;
   background-size: ${(props) => props.scaledWidth}px
     ${(props) => props.scaledHeight}px;
@@ -50,21 +47,25 @@ const ZoomResult = ({
   const scaleX = zoomResultWidth / lensWidth;
   const scaleY = zoomResultHeight / lensHeight;
 
+  const scaledWidth = imageElement.width * scaleX;
+  const scaledHeight = imageElement.height * scaleY;
+
   const positionX = -1 * ((offsetLeft - imageElement?.offsetLeft) * scaleX);
   const positionY = -1 * ((offsetTop - imageElement?.offsetTop) * scaleY);
 
-  const scaledWidth = imageElement.width * scaleX;
-  const scaledHeight = imageElement.height * scaleY;
+  const style: CSSProperties = {
+    backgroundPositionX: `${positionX}px`,
+    backgroundPositionY: `${positionY}px`,
+  };
 
   return (
     <StyledZoomResult
       imageSrc={imageElement.src}
-      positionX={positionX}
-      positionY={positionY}
       scaledHeight={scaledHeight}
       scaledWidth={scaledWidth}
       zoomResultHeight={zoomResultHeight}
       zoomResultWidth={zoomResultWidth}
+      style={style}
     />
   );
 };
