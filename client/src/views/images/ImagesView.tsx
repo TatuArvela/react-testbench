@@ -14,29 +14,25 @@ const StyledImagesView = styled.div`
 `;
 
 const Button = styled.button`
-  margin: 8px auto;
-  border: 2px solid black;
-  padding: 8px;
-  font-size: 16px;
-  border-radius: 0;
   background: rgb(220, 220, 220);
-  transition: all 0.1s;
+  border-radius: 0;
+  border: none;
+  box-shadow: inset 0 0 0 2px black;
+  font-size: 16px;
+  margin: 8px auto;
+  padding: 8px;
 
   &:hover {
     background: rgb(200, 200, 200);
-    border-top-width: 1px;
-    border-left-width: 1px;
-    border-right-width: 3px;
-    border-bottom-width: 3px;
+    box-shadow: inset 0 0 0 1px black, inset -1px -1px 0 1px black;
+    padding: 7px 9px 9px 7px;
   }
 
   &:active {
     &:hover {
       background: rgb(220, 220, 220);
-      border-top-width: 3px;
-      border-left-width: 3px;
-      border-right-width: 1px;
-      border-bottom-width: 1px;
+      box-shadow: inset 0 0 0 1px black, inset 1px 1px 0 1px black;
+      padding: 9px 7px 7px 9px;
     }
   }
 `;
