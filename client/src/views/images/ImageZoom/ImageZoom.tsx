@@ -20,11 +20,11 @@ interface ImageContainerProps {
 }
 
 const ImageContainer = styled.div<ImageContainerProps>`
-  position: relative;
-  display: flex;
   align-items: center;
-  justify-content: center;
+  display: flex;
   height: ${(props) => props.styleHeight}px;
+  justify-content: center;
+  position: relative;
   width: ${(props) => props.styleWidth}px;
 `;
 
@@ -34,6 +34,7 @@ interface ImageProps {
 }
 
 const Image = styled.img<ImageProps>`
+  cursor: zoom-in;
   max-height: ${(props) => props.maxHeight}px;
   max-width: ${(props) => props.maxWidth}px;
 `;
@@ -86,15 +87,15 @@ const ImageZoom = ({
       setIsHovering(false);
     };
 
-    if (imageContainer) {
-      imageContainer.addEventListener('mouseenter', handleEnter);
-      imageContainer.addEventListener('mousemove', handleMove);
-      imageContainer.addEventListener('mouseleave', handleLeave);
+    if (imageElement) {
+      imageElement.addEventListener('mouseenter', handleEnter);
+      imageElement.addEventListener('mousemove', handleMove);
+      imageElement.addEventListener('mouseleave', handleLeave);
 
       return () => {
-        imageContainer.removeEventListener('mouseenter', handleEnter);
-        imageContainer.removeEventListener('mousemove', handleMove);
-        imageContainer.removeEventListener('mouseleave', handleLeave);
+        imageElement.removeEventListener('mouseenter', handleEnter);
+        imageElement.removeEventListener('mousemove', handleMove);
+        imageElement.removeEventListener('mouseleave', handleLeave);
       };
     }
   }, [imageContainer, imageElement, lensHeight, lensWidth]);
