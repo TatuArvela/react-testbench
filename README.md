@@ -28,6 +28,7 @@ The goal is to implement a useful sample project based on the following themes:
 * React Table
 * Formik and Yup
 * Cypress
+* react-error-boundary
 
 #### Patterns
 
@@ -39,3 +40,11 @@ The goal is to implement a useful sample project based on the following themes:
 ## server
 
 Silly little web service with fake security, made with Express.
+
+### TODO
+
+* better security
+* bcrypt
+* express-jwt
+* jsonwebtoken
+* apollo
